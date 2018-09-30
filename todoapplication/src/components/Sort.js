@@ -49,8 +49,8 @@ class Sort extends Component {
             </h3>
           </div>
           <div class="panel-body">
-          <button onClick={this.sortTitle}>Sort by Title</button>
-          <button onClick={this.sortDate}>Sort by Date</button>
+          <button type="button" class="btn btn-success" onClick={this.sortTitle}>Sort by Title</button>&nbsp;&nbsp;
+          <button  ype="button" class="btn btn-primary" onClick={this.sortDate}>Sort by Date</button>
             <table class="table table-stripe">
               <thead>
                 <tr>

@@ -68,7 +68,7 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="completed_at">Completion Date:</label>
-                <input type="date" class="form-control" name="completed_at" value={completed_at} onChange={this.onChange} placeholder="Completion Date" />
+                <input type="text" class="form-control" name="completed_at" value={completed_at} onChange={this.onChange} placeholder="Completion Date" />
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
