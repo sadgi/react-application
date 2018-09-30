@@ -58,13 +58,6 @@ router.post("/task", function(req, res, next) {
   });
 
 
-
-
-
-
-
-
-
   // Delete Task
 router.delete("/task/:id", function(req, res, next) {
     Task.remove({ _id: mongojs.ObjectId(req.params.id) }, function(
