@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import sort from 'fast-sort';
 import axios from 'axios';
 
-class App extends Component {
+class Sort extends Component {
 
   constructor(props) {
     super(props);
+    this.toggleSortDate = this.toggleSortDate.bind(this)
     this.state = {
       tasks: []
     };
@@ -21,6 +22,14 @@ class App extends Component {
       });
   }
 
+  toggleSortDate (event) {
+    const {tasks} = this.state
+    let new_tasks = tasks;
+    sort(new_tasks).asc(u => u.title);
+    this.setState({
+        tasks:new_tasks
+      })
+  }
   render() {
     return (
       <div class="container">
@@ -31,8 +40,7 @@ class App extends Component {
             </h3>
           </div>
           <div class="panel-body">
-            <h4><Link to="/create"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Task</Link></h4>
-            <h4><Link to="/sort"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>  Sorting</Link></h4>
+          <button onClick={this.toggleSortDate}>Order by date</button>
             <table class="table table-stripe">
               <thead>
                 <tr>
@@ -45,7 +53,7 @@ class App extends Component {
                   
                 </tr>
               </thead>
-              <tbody> 
+              <tbody>
                 {this.state.tasks.map(task =>
                   <tr>
                     <td><Link to={'/show/'+task._id}>{task.title}</Link></td>
@@ -66,4 +74,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Sort;

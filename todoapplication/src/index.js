@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 import Edit from './components/Edit';
 import Create from './components/Create';
 import Show from './components/Show';
+import Sort from './components/Sort';
 
 ReactDOM.render(  
   <Router>
@@ -17,6 +18,7 @@ ReactDOM.render(
         <Route path='/edit/:id' component={Edit} />
         <Route path='/create' component={Create} />
         <Route path='/show/:id' component={Show} />
+        <Route path='/sort' component={Sort} />
       </div>
   </Router>,
   document.getElementById('root')

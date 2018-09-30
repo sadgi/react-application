@@ -15,6 +15,7 @@ router.get("/tasks", function(req, res, next) {
 
         for (t in tasks) {
             records.push({ 
+              _id: tasks[t]._id,
                 title: tasks[t].title,
                 description: tasks[t].description,
                 status: tasks[t].status,
@@ -31,16 +32,11 @@ router.get("/tasks", function(req, res, next) {
 
  // Get Single Task
 router.get("/task/:id", function(req, res, next) {
-    Task.findOne({ _id: mongojs.ObjectId(req.params.id) }, function(
-      err,
-      task
-    ) {
-      if (err) {
-        res.send(err);
-      }
-      res.json(task);
-    });
+  Task.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
   });
+});
   
 
 //Save Task
@@ -60,60 +56,20 @@ router.post("/task", function(req, res, next) {
 
   // Delete Task
 router.delete("/task/:id", function(req, res, next) {
-    Task.remove({ _id: mongojs.ObjectId(req.params.id) }, function(
-      err,
-      task
-    ) {
-      if (err) {
-        res.send(err);
-      }
-      res.json(task);
-    });
+  Task.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
   });
+});
+
 
 
   // Update Task
 router.put("/task/:id", function(req, res, next) {
-  var task = req.body;
-  var updTask = {};
-
-
-  if (task.title) {
-    updTask.title = task.title;
-  }
-  if(task.description){
-      updTask.description=task.description;
-  }
-  if(task.status){
-      updTask.status=task.status;
-  }
-  if(task.created_at){
-    updTask.created_at=task.created_at;
-}
-if(task.updated_at){
-    updTask.updated_at=task.updated_at;
-}
-if(task.completed_at){
-    updTask.completed_at=task.completed_at;
-}
-
-  if (!updTask) {
-    res.status(400);
-    res.json({
-      error: "Bad Data"
-    });
-  } else {
-    Task.update(
-      { _id: mongojs.ObjectId(req.params.id) },
-      updTask,
-      {},
-      function(err, task) {
-        if (err) {
-          res.send(err);
-        }
-        res.json(task);
-      }
-    );
-  }
+  Task.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
 });
+
 module.exports = router;

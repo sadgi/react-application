@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Router, Route, browserHistory, IndexRoute} from 'react-router'
 
 class Show extends Component {
 
@@ -12,7 +13,8 @@ class Show extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/api/task'+this.props.match.params.id)
+    console.log(this.props);
+    axios.get('http://localhost:3000/api/task/'+this.props.match.params.id)
       .then(res => {
         this.setState({ task: res.data });
         console.log(this.state.task);
@@ -21,7 +23,7 @@ class Show extends Component {
 
   delete(id){
     console.log(id);
-    axios.delete('http://localhost:3000/api/task'+id)
+    axios.delete('http://localhost:3000/api/task/'+id)
       .then((result) => {
         this.props.history.push("/")
       });
@@ -46,13 +48,13 @@ class Show extends Component {
               <dt>Status:</dt>
               <dd>{this.state.task.status}</dd>
               <dt>Creation Date:</dt>
-              <dd>{this.state.task.creation_date}</dd>
+              <dd>{this.state.task.created_at}</dd>
               <dt>Updatation Date:</dt>
-              <dd>{this.state.task.updation_date}</dd>
+              <dd>{this.state.task.updated_at}</dd>
               <dt>Completion Date:</dt>
-              <dd>{this.state.task.completion_date}</dd>
+              <dd>{this.state.task.completed_at}</dd>
             </dl>
-            <Link to={`/edit/${this.state.task._id}`} class="btn btn-success">Edit</Link>&nbsp;
+            <Link to={'/edit/'+this.state.task._id} class="btn btn-success">Edit</Link>&nbsp;
             <button onClick={this.delete.bind(this, this.state.task._id)} class="btn btn-danger">Delete</button>
           </div>
         </div>

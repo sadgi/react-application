@@ -40,7 +40,7 @@ class Create extends Component {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              ADD BOOK
+              ADD TASK
             </h3>
           </div>
           <div class="panel-body">
