@@ -40,7 +40,7 @@ class Create extends Component {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              ADD TASK
+              ADD TASK  
             </h3>
           </div>
           <div class="panel-body">
@@ -68,7 +68,7 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="completed_at">Completion Date:</label>
-                <input type="text" class="form-control" name="completed_at" value={completed_at} onChange={this.onChange} placeholder="Completion Date" />
+                <input type="date" class="form-control" name="completed_at" value={completed_at} onChange={this.onChange} placeholder="Completion Date" />
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>

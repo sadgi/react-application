@@ -8,7 +8,8 @@ class Sort extends Component {
 
   constructor(props) {
     super(props);
-    this.toggleSortDate = this.toggleSortDate.bind(this)
+    this.sortTitle = this.sortTitle.bind(this)
+    this.sortDate = this.sortDate.bind(this)
     this.state = {
       tasks: []
     };
@@ -22,10 +23,18 @@ class Sort extends Component {
       });
   }
 
-  toggleSortDate (event) {
+  sortTitle (event) {
     const {tasks} = this.state
     let new_tasks = tasks;
     sort(new_tasks).asc(u => u.title);
+    this.setState({
+        tasks:new_tasks
+      })
+  }
+  sortDate (event) {
+    const {tasks} = this.state
+    let new_tasks = tasks;
+    sort(new_tasks).asc(u => u.completed_at);
     this.setState({
         tasks:new_tasks
       })
@@ -40,7 +49,8 @@ class Sort extends Component {
             </h3>
           </div>
           <div class="panel-body">
-          <button onClick={this.toggleSortDate}>Order by date</button>
+          <button onClick={this.sortTitle}>Sort by Title</button>
+          <button onClick={this.sortDate}>Sort by Date</button>
             <table class="table table-stripe">
               <thead>
                 <tr>
