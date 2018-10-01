@@ -13,7 +13,7 @@ class Create extends Component {
       status: '',
       created_at: '',
       deleted_at: '',
-      completed_at:''
+      completed_at: ''
     };
   }
   onChange = (e) => {
@@ -25,22 +25,22 @@ class Create extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, status, created_at, updated_at, completed_at  } = this.state;
+    const { title, description, status, created_at, updated_at, completed_at } = this.state;
 
-    axios.post('http://localhost:3000/api/task', { title, description, status, created_at, updated_at, completed_at  })
+    axios.post('http://localhost:3000/api/task', { title, description, status, created_at, updated_at, completed_at })
       .then((result) => {
         this.props.history.push("/")
       });
   }
 
   render() {
-    const {  title, description, status, created_at, updated_at, completed_at } = this.state;
+    const { title, description, status, created_at, updated_at, completed_at } = this.state;
     return (
       <div class="container">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              ADD TASK  
+              ADD TASK
             </h3>
           </div>
           <div class="panel-body">
@@ -55,9 +55,9 @@ class Create extends Component {
                 <textArea class="form-control" name="description" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textArea>
               </div>
               <div class="form-group">
-              <label for="status">Status:</label>
-              <input type="text" class="form-control" name="status" value={status} onChange={this.onChange} placeholder="Status" />
-            </div>
+                <label for="status">Status:</label>
+                <input type="text" class="form-control" name="status" value={status} onChange={this.onChange} placeholder="Status" />
+              </div>
               <div class="form-group">
                 <label for="created_at">Creation Date:</label>
                 <input type="text" class="form-control" name="created_at" value={created_at} onChange={this.onChange} placeholder="Creation Date" />

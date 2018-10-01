@@ -12,7 +12,7 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/api/task/'+this.props.match.params.id)
+    axios.get('http://localhost:3000/api/task/' + this.props.match.params.id)
       .then(res => {
         this.setState({ task: res.data });
         console.log(this.state.task);
@@ -28,12 +28,12 @@ class Edit extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, status, created_at, updated_at, completed_at  } = this.state;
+    const { title, description, status, created_at, updated_at, completed_at } = this.state;
 
-    axios.put('http://localhost:3000/api/task/'+this.props.match.params.id, { title, description, status, created_at, updated_at, completed_at  } )
+    axios.put('http://localhost:3000/api/task/' + this.props.match.params.id, { title, description, status, created_at, updated_at, completed_at })
       .then((result) => {
         console.log(result);
-        this.props.history.push("/show/"+this.props.match.params.id)
+        this.props.history.push("/show/" + this.props.match.params.id)
       });
   }
 
@@ -47,7 +47,7 @@ class Edit extends Component {
             </h3>
           </div>
           <div class="panel-body">
-            <h4><Link to={'/show/'+this.state.task._id}><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Task List</Link></h4>
+            <h4><Link to={'/show/' + this.state.task._id}><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Task List</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
                 <label for="title">Title:</label>
